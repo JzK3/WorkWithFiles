@@ -14,9 +14,11 @@ namespace Task1
                 {
                     Console.WriteLine("File Exists");
                     foreach (DirectoryInfo directory in di.GetDirectories())
+                        //удаление папок
                     {
-                        if (directory.LastAccessTime < timeSpan) {directory.Delete();}
+                        if (directory.LastAccessTime < timeSpan) {directory.Delete(true);}
                     }
+                    //удаление файлов
                     foreach (FileInfo file in di.GetFiles())
                     {
                         if (file.LastAccessTime < timeSpan) { file.Delete(); }
