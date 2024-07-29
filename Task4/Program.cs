@@ -30,9 +30,15 @@ namespace Task4
                             decimal SrBall = reader.ReadDecimal();
                             Console.WriteLine($"Name: {Name}  Group: {Group1}  DateofBirth: {ddbirth}  SrBall: {SrBall}");
                             string stringValue = $"{Name} {ddbirth} {SrBall}";
-                            using (StreamWriter sw = File.CreateText($"C:\\Users\\JzK\\Desktop\\Students\\{Group1}.txt"))
+                            if (!(File.Exists($"C:\\Users\\JzK\\Desktop\\Students\\{Group1}.txt")))
                             {
-                                sw.WriteLine(stringValue);
+                                using (StreamWriter sw = File.CreateText($"C:\\Users\\JzK\\Desktop\\Students\\{Group1}.txt"))
+                                {
+                                    sw.WriteLine(stringValue);
+                                }
+                            }
+                            else {
+                                File.AppendAllText($"C:\\Users\\JzK\\Desktop\\Students\\{Group1}.txt",stringValue);
                             }
                         }
                     }
